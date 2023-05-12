@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:weightSum="1"
+
+  tools:context=".MovieDetail.MovieDetailActivity">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignParentBottom="true"
+      android:elevation="10dp"
+      android:orientation="vertical"
+      android:weightSum="1">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="0.3"
+        android:elevation="10dp"
+        android:orientation="vertical">
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="0.7"
+        android:background="@color/red"
+        android:elevation="10dp"
+        android:orientation="vertical">
+
+      </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:weightSum="1">
+
+      <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_weight="0.4">
+
+        <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:src="@mipmap/ic_launcher" />
+      </RelativeLayout>
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10sp"
+          android:text="Avenger End Game"
+          android:textSize="25sp"
+          android:textStyle="bold" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10sp"
+          android:text="Avenger End Game"
+          android:textSize="17sp"
+          android:textStyle="normal" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10sp"
+          android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel velit pellentesque metus commodo scelerisque. Ut risus neque, placerat cursus magna consequat, tempor aliquam metus. Maecenas ac bibendum urna. Curabitur ultricies velit a dolor ullamcorper tempor. Ut volutpat dui vitae tortor pharetra, nec lobortis orci luctus. Nam vel ultrices felis. Nulla augue mauris, mollis nec nulla at, pharetra dignissim augue. Proin a nunc et velit lacinia varius. Aliquam velit arcu, sagittis nec turpis ac, accumsan semper nunc. Mauris consectetur lobortis nisl vel egestas."
+          android:textSize="13sp"
+          android:textStyle="normal" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="10sp"
+          android:text="review"
+          android:textAlignment="viewEnd"
+          android:textStyle="italic" />
+      </LinearLayout>
+    </LinearLayout>
+
+  </RelativeLayout>
+</LinearLayout>

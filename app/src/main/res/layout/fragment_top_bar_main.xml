@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:fontFamily="@font/proxima"
+  tools:context=".MovieList.top_bar_main">
+
+
+  <TextView
+    android:id="@+id/appName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="3dp"
+    android:layout_marginVertical="1dp"
+    android:text="Ratting Movie"
+    android:textColor="@color/app_name"
+    android:textSize="35sp"
+    android:textStyle="bold"/>
+
+  <TextView
+    android:id="@+id/name_user"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="5dp"
+    android:text="Test header"
+    android:textColor="@color/text_header"
+    android:textSize="15sp"
+    android:textStyle="bold"/>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="5dp"
+    android:background="@color/split_line_top_bar" />
+
+
+</LinearLayout>
