@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  tools:context=".BookingTicket.BookingTicketActivity">
+
+  <TextView
+    android:id="@+id/tiket_tittle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="30sp"
+    android:layout_marginVertical="10sp"
+    android:text="Tittle"
+    android:textSize="25sp"
+    android:textStyle="bold" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10sp"
+    android:weightSum="1">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.3"
+      android:text="Rạp"
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+    <Spinner
+      android:id="@+id/theater_spiner"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+
+      android:layout_weight="0.7"
+
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10sp"
+    android:weightSum="1">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.3"
+      android:text="Ngày"
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+    <Spinner
+      android:id="@+id/ticket_date"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+
+      android:layout_weight="0.7"
+
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10sp"
+    android:weightSum="1">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.3"
+      android:text="Giờ"
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+    <Spinner
+      android:id="@+id/ticket_time"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+
+      android:layout_weight="0.7"
+
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10sp"
+    android:weightSum="1">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.3"
+      android:text="Vị trí"
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+    <Spinner
+      android:id="@+id/ticket_position"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+
+      android:layout_weight="0.7"
+
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10sp"
+    android:weightSum="1">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.3"
+      android:text="Giá vé: "
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+    <TextView
+      android:id="@+id/ticket_price"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+
+      android:layout_weight="0.7"
+
+      android:textSize="20sp"
+      android:textStyle="bold" />
+
+  </LinearLayout>
+  <Button
+    android:id="@+id/buy_tiket"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Mua"
+    android:layout_marginHorizontal="40sp"
+    android:backgroundTint="@color/red"
+    android:textSize="20sp"
+    android:textStyle="bold"/>
+</LinearLayout>

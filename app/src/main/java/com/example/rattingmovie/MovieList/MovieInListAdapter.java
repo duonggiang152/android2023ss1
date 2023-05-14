@@ -1,5 +1,6 @@
 package com.example.rattingmovie.MovieList;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.rattingmovie.R;
 import com.example.rattingmovie.data.MovieDescriptionModel;
 
@@ -23,6 +25,7 @@ public class MovieInListAdapter
   private MovieDescriptionModel[] movieDescriptionModels;
   private OnClickListener onClickListener;
 
+  private Context mContext;
   public static class ViewHolder extends RecyclerView.ViewHolder {
     private final TextView nameTextView;
     private final TextView yearTextView;
@@ -75,7 +78,10 @@ public class MovieInListAdapter
   public MovieInListAdapter(MovieDescriptionModel[] dataSet) {
     movieDescriptionModels = dataSet;
   }
-
+  public MovieInListAdapter(Context context, MovieDescriptionModel[] dataSet) {
+    movieDescriptionModels = dataSet;
+    this.mContext = context;
+  }
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -84,7 +90,13 @@ public class MovieInListAdapter
 
     return new ViewHolder(view);
   }
+  public void updateData(Context context, MovieDescriptionModel[] movieDescriptionModels ) {
+    this.mContext = context;
+    this.movieDescriptionModels = movieDescriptionModels;
 
+// Notify the adapter that the data has changed
+    notifyDataSetChanged();
+  }
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     MovieDescriptionModel movieDescriptionModel = movieDescriptionModels[position];
@@ -95,6 +107,9 @@ public class MovieInListAdapter
     holder.getStarTextView().setText("Star: " + movieDescriptionModel.getStar().toString());
     holder.getStudioTextView().setText("Studio: " + movieDescriptionModel.getStudio());
 
+    Glide.with(mContext)
+      .load("http://10.0.2.2:3000"+movieDescriptionModel.getImageMovie())
+      .into(holder.getImageView());
     holder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -105,6 +120,8 @@ public class MovieInListAdapter
     });
 
   }
+
+
 
   @Override
   public int getItemCount() {

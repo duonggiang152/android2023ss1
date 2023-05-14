@@ -1,10 +1,5 @@
 package com.example.rattingmovie.ui.login;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,18 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rattingmovie.ApiInterface.LoginApi;
 import com.example.rattingmovie.ApiInterface.LoginData;
 import com.example.rattingmovie.ApiInterface.LoginResponse;
-import com.example.rattingmovie.BuildConfig;
 import com.example.rattingmovie.MovieList.MovieListActivity;
 import com.example.rattingmovie.R;
-import com.example.rattingmovie.RegisterActivity;
+import com.example.rattingmovie.data.DataGlobal;
 import com.example.rattingmovie.data.UserInfo;
-import com.example.rattingmovie.databinding.ActivityLoginBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
         String password = passwordTextView.getText().toString();
         if (username.matches(regexUsername) && username.matches(regexPassword)) {
-
           Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:3000").addConverterFactory(GsonConverterFactory.create()).build();
 
           LoginApi myApi = retrofit.create(LoginApi.class);
@@ -77,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
               if (response.raw().code() == 401) {
-                warningText.setText("Login Fail");
+                Toast.makeText(LoginActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
               }
               if (response.raw().code() == 200) {
 
@@ -92,13 +84,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+              Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
               System.out.println(call.toString());
               System.out.println(t.toString());
               // handle the error
             }
           });
         } else {
-          warningText.setText("Input không hợp lệ");
+          Toast.makeText(LoginActivity.this, "Input không hợp lệ", Toast.LENGTH_SHORT).show();
         }
       }
     });

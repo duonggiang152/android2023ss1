@@ -13,5 +13,5 @@
   <color name="split_line_top_bar">#c3c4c7</color>
   <color name="list_movie_new">#37fa9b</color>
   <color name="list_movie_have_highest_view">#f77988</color>
-  <color name="background_movie_item">#33edebeb</color>
+  <color name="background_movie_item">#339c9c9c</color>
 </resources>

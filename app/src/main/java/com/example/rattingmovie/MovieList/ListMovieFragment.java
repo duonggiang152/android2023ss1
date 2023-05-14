@@ -1,30 +1,36 @@
 package com.example.rattingmovie.MovieList;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.rattingmovie.ApiInterface.movie.MovieApi;
+import com.example.rattingmovie.ApiInterface.movie.MovieResponse;
 import com.example.rattingmovie.MovieDetail.MovieDetailActivity;
 import com.example.rattingmovie.R;
-import com.example.rattingmovie.RegisterActivity;
 import com.example.rattingmovie.data.MovieDescriptionModel;
 import com.example.rattingmovie.data.Type.ListFragmentType;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-import eightbitlab.com.blurview.BlurView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,32 +67,77 @@ public class ListMovieFragment extends Fragment {
         type = ListFragmentType.HIGHESTVIEW.toString();
       }
     }
-
-
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
+    List<MovieDescriptionModel> movieDescriptionModels = new ArrayList<>() ;
+    MovieInListAdapter movieInListAdapter = new MovieInListAdapter( movieDescriptionModels.toArray(new MovieDescriptionModel[0]));
     // Inflate the layout for this fragment
+    String BASE_URL = "http://10.0.2.2:3000";
+    Retrofit retrofit = new Retrofit.Builder()
+      .baseUrl(BASE_URL)
+      .addConverterFactory(GsonConverterFactory.create())
+      .build();
+    MovieApi myApi = retrofit.create(MovieApi.class);
+    Call<List<MovieResponse>> call = myApi.getMovies();
+    if(type.compareTo(ListFragmentType.NEW.toString()) == 0) {
+      call = myApi.getMovies();
+    }
+    if(type.compareTo(ListFragmentType.HIGHESTVIEW.toString()) == 0) {
+      call = myApi.getTopMovies();
+    }
+
+    call.enqueue(new Callback<List<MovieResponse>>() {
+      @Override
+      public void onResponse(Call<List<MovieResponse>> call, Response<List<MovieResponse>> response) {
+        if (!response.isSuccessful()) {
+          // Handle error
+
+          return;
+        }
+        List<MovieResponse> movies = response.body();
+        for(int i = 0; i < movies.size(); i++) {
+          MovieResponse movieResponse = movies.get(i);
+          MovieDescriptionModel movieDescriptionModel = new MovieDescriptionModel(movieResponse.getId(),
+            movieResponse.getName(),
+            movieResponse.getYear(),
+            movieResponse.getStudio(),
+            movieResponse.getStar(),
+            movieResponse.getActor(),
+            movieResponse.getImageMovie()
+          );
+          movieDescriptionModels.add(movieDescriptionModel);
+          movieInListAdapter.updateData(getContext(),movieDescriptionModels.toArray(new MovieDescriptionModel[0]));
+//          MovieInListAdapter newAdapter = new MovieInListAdapter(getContext(), movieDescriptionModels.toArray(new MovieDescriptionModel[0]));
+//          recyclerView.setAdapter(newAdapter);
+        }
+
+        // Process the list of movies
+      }
+
+      @Override
+      public void onFailure(Call<List<MovieResponse>> call, Throwable t) {
+        // Handle failure
+        Toast.makeText(getContext(), "Faile", Toast.LENGTH_SHORT).show();
+      }
+    });
     movieIntent = new Intent(getContext(), MovieDetailActivity.class);
     View view = inflater.inflate(R.layout.fragment_list_movie, container, false);
     recyclerView = view.findViewById(R.id.recycle_list_movie);
-    MovieDescriptionModel movieDescriptionModel = new MovieDescriptionModel(
-      "123123",
-      "avenger",
-      "2014",
-      "marvel",
-      4.5,
-      "crish hamsworth, natasha romanoth");
+
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    MovieDescriptionModel[] movieDescriptionModels = {movieDescriptionModel,movieDescriptionModel,movieDescriptionModel,movieDescriptionModel,movieDescriptionModel,movieDescriptionModel};
-    MovieInListAdapter movieInListAdapter = new MovieInListAdapter( movieDescriptionModels);
+
+
+
     recyclerView.setAdapter(movieInListAdapter);
 
     movieInListAdapter.setOnClickListener(new MovieInListAdapter.OnClickListener() {
       @Override
       public void onClick(int position, MovieDescriptionModel movieDescriptionModel) {
+
+        movieIntent.putExtra("movie", movieDescriptionModel);
         startActivity(movieIntent);
       }
     });

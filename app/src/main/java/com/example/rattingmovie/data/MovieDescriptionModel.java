@@ -1,6 +1,9 @@
 package com.example.rattingmovie.data;
 
-public class MovieDescriptionModel {
+import java.io.Serializable;
+
+public class MovieDescriptionModel implements Serializable {
+  private static final long serialVersionUID = 1L;
   private String id;
   private String name;
   private String year;
@@ -9,13 +12,14 @@ public class MovieDescriptionModel {
   private String actor;
   private String imageMovie;
 
-  public MovieDescriptionModel(String id, String name, String year, String studio, Double star, String actor) {
+  public MovieDescriptionModel(String id, String name, String year, String studio, Double star, String actor, String imageMovie) {
     this.id = id;
     this.name = name;
     this.year = year;
     this.studio = studio;
     this.star = star;
     this.actor = actor;
+    this.imageMovie = imageMovie;
   }
 
   public String getId() {
@@ -64,5 +68,13 @@ public class MovieDescriptionModel {
 
   public void setActor(String actor) {
     this.actor = actor;
+  }
+
+  public String getImageMovie() {
+    return imageMovie;
+  }
+
+  public void setImageMovie(String imageMovie) {
+    this.imageMovie = imageMovie;
   }
 }

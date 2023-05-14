@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UserInfo.UserInfoActivity">
+  <TextView
+    android:id="@+id/info_user_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="25sp"
+    android:textStyle="bold"
+    android:text="User name"
+    android:layout_marginBottom="60sp"/>
+  <TextView
+    android:id="@+id/info_user_email"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="25sp"
+    android:textStyle="bold"
+    android:text="Email"
+    android:layout_marginBottom="60sp"/>
+
+  <TextView
+    android:id="@+id/info_user_password"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="25sp"
+    android:textStyle="bold"
+    android:text="password"
+    android:layout_marginBottom="60sp"/>
+
+  <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Thêm cổng MoMo"
+    android:backgroundTint="@color/red"
+    android:layout_marginHorizontal="50sp" />
+
+</LinearLayout>
